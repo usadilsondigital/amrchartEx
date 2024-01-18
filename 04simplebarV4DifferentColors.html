@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
+
+
+</head>
+<body>
+
+<h1>This is a xy chart</h1>
+
+<div id="chartdiv" style="width: 900px; height: 600px;"></div>
+
+ <!-- Graph Controlling Script -->
+ <script> 
+
+am4core.useTheme(am4themes_animated);
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+// Add data
+chart.data = [{
+  "country": "Dato",
+  "value1": 450,
+  "value2": 1200,
+  "value1": 960,
+  "value2": 710,
+  "value2": 900
+}];
+
+// Create axes
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "country";
+categoryAxis.renderer.grid.template.location = 0;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// Create series
+function createSeries(field) {
+  var series = chart.series.push(new am4charts.ColumnSeries());
+  series.dataFields.valueY = field;
+  series.dataFields.categoryX = "country";
+  return series;
+}
+
+createSeries("value1");
+createSeries("value2");
+createSeries("value1");
+createSeries("value2");
+createSeries("value1");
+createSeries("value2");
+
+
+
+// Add cursor
+chart.cursor = new am4charts.XYCursor();
+
+ </script>
+					
+                       
+
+</body>
+</html>
