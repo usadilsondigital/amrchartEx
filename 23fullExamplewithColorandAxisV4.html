@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Page Title</title>
+ 
+  <script src="chartist.min.js"></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="chartist.min.css" />
+  <link rel="stylesheet" href="bootstrap.min.css" />
+  <link rel="stylesheet" href="jquery-ui.min.css" />
+  <link rel="stylesheet" href="font-awesome.css" />
+  
+    <!--FOR ANIMATIONS-->
+    <link rel="stylesheet" href="animate.css" />
+        <title>
+            SAWS | My Account</title>
+        
+        <script type="text/javascript">
+
+            if (top.location.href != self.location.href)
+                top.location.href = self.location.href;
+
+        //function OnChange(sender, args) {
+        //    if (sender.get_selected() < 0) {
+        //        sender.kendoWidget._clearValue();
+        //    }
+        //}
+        </script>
+        <script src="wow.min.js"></script>
+        <script>
+            new WOW().init();
+        </script>
+
+<script src="modernizr-2.8.3.js"></script>
+
+
+  <script src="jquery-3.1.1.js" type="text/javascript"></script>
+  <script type="text/javascript" src='jquery-3.2.0.min.js'></script>
+
+   <!--Graph Renders here-->
+
+  <style>
+    .chartDivContainer {
+      display: block;
+      clear: both;
+    }
+
+    #chartdiv1 {
+      width: 100%;
+      height: 500px;
+      display: none;
+    }
+
+    #chartdiv2 {
+      width: 100%;
+      height: 500px;
+      display: block;
+    }
+
+    .chartDivContainer .button-animate {
+      margin: 10px auto;
+      max-width: 255px;
+      font-weight: bold;
+    }
+
+    .chartDivContainer .button-animate:hover {
+      cursor: pointer;
+    }
+
+    .Hide {
+      display: none;
+    }
+  </style>
+  <!--v1-->
+  <script>
+
+    var chartReg = {};
+    var chartArray = [];
+    var maximum = 0;
+    var minimum = 0;
+    var createdChart1;
+    var createdChart2;
+    let p = [];
+    var chartdiv = 'chartdiv1';
+    var chartdiv2 = 'chartdiv2';
+    var startv =1100;
+    var endv =1200;
+    Array.prototype.max = function () {
+      return Math.max.apply(null, this);
+    };
+    Array.prototype.min = function () {
+      return Math.min.apply(null, this);
+    };
+    function CalcMaxMin(chartdiv2){
+      let size = chartReg[chartdiv2].data.length;
+      for (let i = 0; i < size; i++) {
+      p.push(chartReg[chartdiv2].data[i].monthlyUsage);
+    }
+     maximum = p.max();
+     minimum = p.min();
+    }   
+    function createChart(chartdiv, charttype) {
+      maybeDisposeChart(chartdiv);
+      chartReg[chartdiv] = am4core.create(chartdiv, charttype);
+      chartArray.push(chartReg[chartdiv]);
+      return chartReg[chartdiv];
+    }
+    function maybeDisposeChart(chartdiv) {
+      if (chartReg[chartdiv]) {
+        chartReg[chartdiv].dispose();
+        delete chartReg[chartdiv];
+      }
+    }
+    function getChartByContainerRef(container) {
+      var charts = am4core.registry.baseSprites[i];
+      for (var i = 0; i < charts.length; i++) {
+        if (charts[i].svgContainer === container) {
+          return charts[i];
+        }
+      }
+    }
+    function getChartByContainerId(id) {
+      var charts = am4core.registry.baseSprites[i];
+      for (var i = 0; i < charts.length; i++) {
+        if (charts[i].svgContainer.id == id) {
+          return charts[i];
+        }
+      }
+    }
+    function CategoryAxisDataFieldCategory(valueCategory){return valueCategory;}
+    function ValueAxisTitleText(valueAxistitletext){return valueAxistitletext;}
+    function SeriesDataFieldsCategoryX(stringValue){return stringValue;}
+    function SeriesDataFieldsCategoryY(stringValue){return stringValue;} 
+    function changeMax(newMax,chartdiv){
+      maximum = newMax;
+      //getme position the first element with this monthy usage
+      console.log(monthlyChartData);
+      var pos = 0;
+      for(let i=0;i<monthlyChartData.length;i++){
+          if(monthlyChartData[i].monthlyUsage == maximum){
+            pos = i;
+            break;
+          }
+      }
+      chartReg[chartdiv2].series.getIndex(0).columns.values[pos].fill =  am4core.color('red');
+     // console.log('ouside',chartReg[chartdiv].series.getIndex(0).columns.template);
+      columnTemplateOut = chartArray[0].series.getIndex(0).columns.template;
+     // columnTemplateOut.fill = am4core.color("red");
+    // var third = chartReg[chartdiv].series.getIndex(0).columns.values[2];
+     //third.fill = am4core.color("red");
+      //console.log(chartArray[0].series.getIndex(0).columns.values[2].dataItem.categories.categoryX);
+   //   console.log(chartArray[0].series.getIndex(0).columns.values[2].baseSprite.data);
+}
+  </script>
+  <!--v1 end-->
+
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <div class="chartDivContainer">
+    <div id="chartdiv1" class="dailyChart"></div>
+    <div id="chartdiv2" class="monthlyChart"></div>
+<!--v1-->
+<div>
+
+  <button type="button" id="changeColorbtn"; onclick="CalcMaxMin('chartdiv2');changeMax(/*document.getElementById('valorMax').value*/maximum,'div2');this.disabled=true;">ChangeColor</button>
+  <input type="text" id="valorMax" onfocus="this.value=''"placeholder="highest consumption"/>
+  <button type="button" id="addBaseLinebtn"; onclick="CalcMaxMin('chartdiv2');let el  = document.getElementById('valorBaseLine');Ok(0,maximum+500,1500,1000,el.value);this.disabled=true;">Adding BaseLine</button>
+  <input type="number" id="valorBaseLine" onfocus="this.value=''"placeholder="last year average "/>
+  <button type="button" id="colorThisBarbtn"; onclick="chooseBar(parseInt(document.getElementById('barNumber').value),10);this.disabled=true;">color This Bar</button>
+  <input type="number" id="barNumber" onfocus="this.value=''" placeholder="barNumber"/>
+  <button type="button" id="restartbtn" 
+  onclick="chartReg[chartdiv2].validateData();
+  chartReg[chartdiv].validateData();
+  restart();
+  document.getElementById('barNumber').value='';
+  document.getElementById('addBaseLinebtn').disabled=false;
+  document.getElementById('valorBaseLine').value='';
+  document.getElementById('colorThisBarbtn').disabled=false;
+  document.getElementById('changeColorbtn').disabled=false;
+  document.getElementById('valorMax').value = '';">Restart Chart</button>
+</div>
+<!--v1 end-->
+  </div>
+  <!-- Graph Controlling Script -->
+  <script>
+    am4core.addLicense("CH282505025");
+    /** Daily View **/
+
+    // Create chart instance chart==createdChart1
+    
+    createdChart1 = createChart("chartdiv1", am4charts.XYChart);
+    chartReg[chartdiv].hiddenState.properties.opacity = 0; 
+    // Add percent sign to all numbers
+    chartReg[chartdiv].numberFormatter.numberFormat = "#.#";
+
+    // Add data
+    chartReg[chartdiv].data = jQuery.parseJSON('[]');
+    
+    //Color Change
+    chartReg[chartdiv].colors.list = [
+      am4core.color("#DDDDDD"),
+      am4core.color("#6eb7fb"),
+      am4core.color("#FF6F91"),
+      am4core.color("#FF9671"),
+      am4core.color("#FFC75F"),
+      am4core.color("#F9F871")
+    ];
+
+    // Create axes
+    var categoryAxis = chartReg[chartdiv].xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "formattedDay";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.minGridDistance = 50;
+
+    //Check language to change Gallons Text
+    var lang = $(".active_lang_icon").val();
+    var gal_txt = "Gallons";
+
+    if (lang == "ESP") {
+      gal_txt = "Galones";
+    }
+
+    var valueAxis = chartReg[chartdiv].yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = gal_txt;
+    valueAxis.title.fontWeight = 800;
+
+    // Create series
+    var series = chartReg[chartdiv].series.push(new am4charts.ColumnSeries());
+    series.dataFields.valueY = "totalUsage";
+    series.dataFields.categoryX = "formattedDay";
+    series.clustered = false;
+    series.columns.template.width = am4core.percent(50);
+    series.tooltipText = "Total Use : [bold]{valueY}[/]";
+    series.name = "Total Use";
+
+    var series = chartReg[chartdiv].series.push(new am4charts.ColumnSeries());
+    series.dataFields.valueY = "dailyUsage";
+    series.dataFields.categoryX = "formattedDay";
+    series.clustered = false;
+    series.tooltipText = "Daily Use for {categoryX} : [bold]{valueY}[/]";
+    series.name = "Daily Use";
+
+    chartReg[chartdiv].legend = new am4charts.Legend();
+    chartReg[chartdiv].cursor = new am4charts.XYCursor();
+    chartReg[chartdiv].cursor.lineX.disabled = true;
+    chartReg[chartdiv].cursor.lineY.disabled = true;
+
+
+    /** Monthly View **/
+    var obj = jQuery.parseJSON('[{"UsageGallons":788.1,"ReadDate":"2021-11-24T11:01:18","BillAmount":103.65,"BillFromDate":"2021-10-27T00:00:00","BillToDate":"2021-11-24T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2021-12-28T11:49:49","BillAmount":212.49,"BillFromDate":"2021-11-25T00:00:00","BillToDate":"2021-12-28T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2022-01-31T11:33:36","BillAmount":108.83,"BillFromDate":"2021-12-29T00:00:00","BillToDate":"2022-01-31T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2022-03-01T10:05:38","BillAmount":103.64,"BillFromDate":"2022-02-01T00:00:00","BillToDate":"2022-03-01T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2022-05-03T10:27:49","BillAmount":98.64,"BillFromDate":"2022-03-31T00:00:00","BillToDate":"2022-05-03T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2022-06-02T10:50:07","BillAmount":103.64,"BillFromDate":"2022-05-04T00:00:00","BillToDate":"2022-06-02T00:00:00"},{"UsageGallons":3740.5,"ReadDate":"2022-07-06T09:04:49","BillAmount":138.15,"BillFromDate":"2022-06-03T00:00:00","BillToDate":"2022-07-06T00:00:00"},{"UsageGallons":1496.2,"ReadDate":"2022-08-03T10:53:05","BillAmount":109.2,"BillFromDate":"2022-07-07T00:00:00","BillToDate":"2022-08-03T00:00:00"},{"UsageGallons":1496.2,"ReadDate":"2022-09-02T11:03:06","BillAmount":109.2,"BillFromDate":"2022-08-04T00:00:00","BillToDate":"2022-09-02T00:00:00"},{"UsageGallons":1496.2,"ReadDate":"2022-10-03T11:05:56","BillAmount":109.2,"BillFromDate":"2022-09-03T00:00:00","BillToDate":"2022-10-03T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2022-11-02T10:04:56","BillAmount":103.64,"BillFromDate":"2022-10-04T00:00:00","BillToDate":"2022-11-02T00:00:00"},{"UsageGallons":748.1,"ReadDate":"2022-12-02T11:10:14","BillAmount":103.64,"BillFromDate":"2022-11-03T00:00:00","BillToDate":"2022-12-02T00:00:00"},{"UsageGallons":2244.3,"ReadDate":"2023-02-02T10:36:25","BillAmount":117.83,"BillFromDate":"2023-01-05T00:00:00","BillToDate":"2023-02-02T00:00:00"}]');
+
+    var monthlyChartData = [];
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        monthlyChartData
+          .push(
+            {
+              "month": convertdate(obj[key].ReadDate),
+              "monthlyUsage": obj[key].UsageGallons,
+              "billAmount": obj[key].BillAmount,
+              "billFrom": obj[key].BillFromDate,
+              "billTo": obj[key].BillToDate
+            });
+      }
+    }
+    console.log(monthlyChartData);
+
+    function convertdate(dateStr) {
+      var t = dateStr.split(/[- :]/);
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var year = t[0];
+      var month = monthNames[parseInt(t[1] - 1)];
+      return (month + " " + year.substr(year.length - 2));
+    }
+    // Create chart2 instance
+    createdChart2 = createChart("chartdiv2", am4charts.XYChart);
+    chartReg[chartdiv2].hiddenState.properties.opacity = 0; 
+    // Add percent sign to all numbers
+    chartReg[chartdiv2].numberFormatter.numberFormat = "#.#";
+    // Add data
+    chartReg[chartdiv2].data = monthlyChartData;
+    // Create axes
+    var categoryAxis2 = chartReg[chartdiv2].xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis2.dataFields.category = "month";
+    categoryAxis2.renderer.grid.template.location = 0;
+    categoryAxis2.renderer.minGridDistance = 50;
+
+    //Check language to change Gallons Text
+    var lang = $(".active_lang_icon").val();
+
+    var gal_txt = "Gallons";
+
+    if (lang == "ESP") {
+      gal_txt = "Galones";
+    }
+
+    var valueAxis = chartReg[chartdiv2].yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = gal_txt;
+    valueAxis.title.fontWeight = 800;
+    /*v1*/
+    function Ok(first,second,third,fourth,fifth){//0,4000,1500,1000      
+      if(GoodValidationBaseLine(first,second,third,fourth,fifth)){
+        valueAxis.min = first;
+        valueAxis.max = second;
+        valueAxis.strictMinMax = true;
+        valueAxis.renderer.minGridDistance = 30;
+        // axis break
+        var axisBreak = valueAxis.axisBreaks.create();
+        axisBreak.startValue = parseInt(fifth, 10);
+        axisBreak.endValue = parseInt(fifth, 10)+1;
+        var d = (axisBreak.endValue - axisBreak.startValue) / (valueAxis.max - valueAxis.min);
+        axisBreak.breakSize = 0.05 * (1 - d) / d; 
+        var hoverState = axisBreak.states.create("hover");
+        hoverState.properties.breakSize = 1;
+        hoverState.properties.opacity = 0.1;
+        hoverState.transitionDuration = third;
+        axisBreak.defaultState.transitionDuration = fourth;
+      }    
+    }   
+    function GoodValidationBaseLine(first,second,third,fourth,fifth){
+      return true;
+      var validated = false;
+      console.log(maximum);
+      if(barNumber > 0 && barNumber < monthlyChartData.length){
+        validated = true;
+      }
+      return false;
+    } 
+    function restart(){     
+    valueAxis.axisBreaks.each(elem =>{elem.disabled = true;});
+    }    
+    function chooseBar(barNumber){
+      if(GoodValidationBarNumber(barNumber))
+      {chartReg[chartdiv2].series.getIndex(0).columns.values[barNumber-1].fill =  am4core.color('red');}
+    }
+    function GoodValidationBarNumber(barNumber){
+      var validated = false;
+      if(barNumber > 0 && barNumber < monthlyChartData.length){
+        validated = true;
+      }
+      return validated;
+    }
+    /**v1 end*/
+
+    // Create series2
+    var series2 = chartReg[chartdiv2].series.push(new am4charts.ColumnSeries());
+    series2.dataFields.valueY = "monthlyUsage";
+    series2.dataFields.categoryX = "month";
+    series2.clustered = false;
+    series2.columns.template.width = am4core.percent(50);
+
+    series2.tooltipText = "Total Use : [bold]{valueY}[/] \n Billing period: [bold]{billFrom.formatDate('M/d')} - {billTo.formatDate('M/d')}[/] \n Bill Amount: [bold]${billAmount.formatNumber('#.00')}";
+
+    chartReg[chartdiv2].cursor = new am4charts.XYCursor();
+    chartReg[chartdiv2].cursor.lineX.disabled = true;
+    chartReg[chartdiv2].cursor.lineY.disabled = true;
+
+    /** Switcher Button**/
+    $('.toggle').click(function () {
+      $('#chartdiv1').toggle('fast');
+      $('#chartdiv2').toggle('fast');
+
+      var $this = $(this);
+      $this.toggleClass('toggle');
+      if ($this.hasClass('toggle')) {
+        $this.html('<i class="fa fa-retweet"></i> Daily Use');
+        $("#lblChartType").html('<label id="lblChartType">Monthly Use</label>');
+      } else {
+        $this.html('<i class="fa fa-retweet"></i> Monthly Use');
+        $("#lblChartType").html('<label id="lblChartType">Daily Use <span style="font-size:14px;display: inline">for Most Recent Bill</span></label>');
+      }
+    });
+
+  </script>
+</head>
+
+<body>
+  <script type="text/javascript" src='jquery-ui.min.js'></script>
+</body>
+
+</html>
