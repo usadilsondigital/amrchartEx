@@ -14,23 +14,21 @@
 <body>
 
   <h1>This is a xy chart</h1>
+  <button type="button" onclick="GetVertical();">Vertical</button>
 
-  <div id="chartdiv" style="width: 900px; height: 600px;"></div>
+  <div id="chartdiv" style="width: 600px; height: 600px;"></div>
 
   <script>
     am4core.useTheme(am4themes_animated);
     am4core.useTheme(am4themes_kelly);
 
-    // Create chart instance
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-
-    // Add cursor
+chart.data = [{"country":"USA","visits":102},{"country":"Cuba","visits":96},{"country":"Swiss","visits":72},{"country":"Germany","visits":124}]
     chart.cursor = new am4charts.XYCursor();
 
   </script>
-   <!-- END Graph Controlling Script -->
-
+  
 </body>
 
 </html>
