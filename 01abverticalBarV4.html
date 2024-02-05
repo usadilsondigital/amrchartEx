@@ -74,6 +74,26 @@
     series.dataFields.categoryX = "country";
     series.tooltipText = "[{categoryX}:bold{valueY}[/]]";
     }
+
+    function GetHorizontal(){
+      createdChart1.data = [{country: "USA",visits: 1725},{country: "x",visits: 1882},{country: "e",visits: 1809},
+                            {country: "g",visits: 1322},{country: "f",visits: 1122},{country: "gt",visits: 1114},{
+                                country: "i",visits: 984},{country: "s",visits: 711},{country: "b",visits: 665
+                            },{country: "r",visits: 580},{country: "ea",visits: 443},{country: "cd",visits: 441}];
+
+    categoryAxis = createdChart1.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "country";
+
+    valueAxis = createdChart1.xAxes.push(new am4charts.ValueAxis());
+
+    series = createdChart1.series.push(new am4charts.ColumnSeries());
+    series.dataFields.valueX = "visits";
+    series.dataFields.categoryY = "country";
+    series.tooltipText = "[{categoryX}:bold{valueY}[/]]";
+
+    }
+
+
   </script>
   
 </body>
