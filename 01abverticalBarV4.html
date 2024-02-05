@@ -21,6 +21,14 @@
   <div id="chartdiv" style="width: 600px; height: 600px;"></div>
 
   <script>
+    var chartReg = {};
+
+    function createChart(chardiv,charttype){
+      chartReg[chartdiv] = am4core.create(chartdiv,charttype);
+      chartArray.push(chartReg[chartdiv]);
+      return chartReg[chartdiv];
+    }
+
     am4core.useTheme(am4themes_animated);
     am4core.useTheme(am4themes_kelly);
 
