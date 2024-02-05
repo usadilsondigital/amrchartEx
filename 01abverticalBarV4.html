@@ -41,7 +41,7 @@
     chartReg["chartdiv"].data = [{"country":"USA","visits":102},{"country":"Cuba","visits":96},{"country":"Swiss","visits":72},{"country":"Germany","visits":124}]
 
     categoryAxis = chartReg["chartdiv"].xAxes.push(new am4charts.categoryAxis());
-
+    categoryAxis.dataFields.category = "country";
 
     chartReg["chartdiv"].cursor = new am4charts.XYCursor();
 
