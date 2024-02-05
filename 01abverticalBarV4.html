@@ -22,6 +22,10 @@
 
   <script>
     var chartReg = {};
+    var chartArray = [];
+    var categoryAxis = null;
+    var valueAxis = null;
+    var series = null;
 
     function createChart(chardiv,charttype){
       chartReg[chartdiv] = am4core.create(chartdiv,charttype);
