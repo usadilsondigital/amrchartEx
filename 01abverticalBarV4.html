@@ -36,7 +36,7 @@
     am4core.useTheme(am4themes_animated);
     am4core.useTheme(am4themes_kelly);
 
-    var chart = am4core.create("chartdiv", am4charts.XYChart);
+    var createdChart1 = createChart("chartdiv", am4charts.XYChart);
 
 chart.data = [{"country":"USA","visits":102},{"country":"Cuba","visits":96},{"country":"Swiss","visits":72},{"country":"Germany","visits":124}]
     chart.cursor = new am4charts.XYCursor();
