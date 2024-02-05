@@ -51,6 +51,12 @@
 
     createdChart1.cursor = new am4charts.XYCursor();
 
+    function GetClean(){
+      var aux1 = createdChart1.xAxes.pop();
+      var aux1 = createdChart1.yAxes.pop();
+      var aux1 = createdChart1.series.pop();
+    }
+
   </script>
   
 </body>
