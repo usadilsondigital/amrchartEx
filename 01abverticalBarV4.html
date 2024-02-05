@@ -6,13 +6,10 @@
 
   <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
   <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
 
 </head>
 
 <body>
-
   <h1>This is a xy chart</h1>
   <button type="button" onclick="GetVertical();">Vertical</button>
   <button type="button" onclick="GetClean();">Clean</button>
@@ -21,33 +18,29 @@
   <div id="chartdiv" style="width: 600px; height: 600px;"></div>
 
   <script>
-    var chartReg = {};
-    var chartArray = [];
-    var categoryAxis = null;
-    var valueAxis = null;
-    var series = null;
 
-    function createChart(chardiv,charttype){
+     function createChart(chardiv,charttype){
       chartReg[chartdiv] = am4core.create(chartdiv,charttype);
       chartArray.push(chartReg[chartdiv]);
       return chartReg[chartdiv];
     }
 
-    am4core.useTheme(am4themes_animated);
-    am4core.useTheme(am4themes_kelly);
+    var chartReg = {};
+    var chartArray = [];
+    var categoryAxis = null;
+    var valueAxis = null;
+    var series = null;
+    var createdChart1 = null;
+   
+     createdChart1 = createChart("chartdiv", am4charts.XYChart);
 
-    var createdChart1 = createChart("chartdiv", am4charts.XYChart);
+    createdChart1.data = [{country: "USA",visits: 1725},{country: "x",visits: 1882},{country: "e",visits: 1809},
+                            {country: "g",visits: 1322},{country: "f",visits: 1122},{country: "gt",visits: 1114},{
+                                country: "i",visits: 984},{country: "s",visits: 711},{country: "b",visits: 665
+                            },{country: "r",visits: 580},{country: "ea",visits: 443},{country: "cd",visits: 441}];
 
-    chartReg["chartdiv"].data = [{"country":"USA","visits":102},{"country":"Cuba","visits":96},{"country":"Swiss","visits":72},{"country":"Germany","visits":124}]
 
-    categoryAxis = chartReg["chartdiv"].xAxes.push(new am4charts.categoryAxis());
-    categoryAxis.dataFields.category = "country";
-
-    valueAxis = chartReg["chartdiv"].yAxes.push(new am4charts.valueAxis());
-
-    series = chartReg["chartdiv"].series.push(new am4charts.ColumnSeries());
-
-    chartReg["chartdiv"].cursor = new am4charts.XYCursor();
+    
 
   </script>
   
