@@ -13,7 +13,7 @@
 <body>
 
 
-<canvas id="color-picker" width="300" height="300"></canvas>
+
   <h1>This is a color picker</h1>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
     Open modal
@@ -27,18 +27,18 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Choose your Color</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+        <canvas id="color-picker" width="300" height="300"></canvas>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Select</button>
       </div>
 
     </div>
@@ -48,16 +48,21 @@
 
 
   <script>
+  var red = 0;
+  var green = 0;
+  var blue = 0;
 
 const canvas = document.getElementById("color-picker");
 const ctx = canvas.getContext("2d");
 // Create a gradient with more colors
 const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
 gradient.addColorStop(0, "purple");
-gradient.addColorStop(0.20, "blue");
-gradient.addColorStop(0.40, "yellow");
+gradient.addColorStop(0.15, "blue");
+gradient.addColorStop(0.30, "pink");
+gradient.addColorStop(0.45, "yellow");
 gradient.addColorStop(0.60, "orange");
-gradient.addColorStop(0.80, "red");
+gradient.addColorStop(0.75, "red");
+gradient.addColorStop(0.90, "brown");
 gradient.addColorStop(1, "green");
 
 
@@ -74,13 +79,12 @@ canvas.addEventListener("click", function(event) {
   const pixelData = ctx.getImageData(x, y, 1, 1).data;
 
   // Extract RGB values
-  const red = pixelData[0];
-  const green = pixelData[1];
-  const blue = pixelData[2];
+   red = pixelData[0];
+   green = pixelData[1];
+   blue = pixelData[2];
 
   // Create and display the selected color
-  const selectedColor = `rgb(${red}, ${green}, ${blue})`;
-  console.log(selectedColor); // You can use this color as needed
+  const selectedColor = `rgb(${red}, ${green}, ${blue})`;  
 });
 
 
