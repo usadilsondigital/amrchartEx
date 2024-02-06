@@ -36,6 +36,22 @@ ctx.fillStyle = gradient;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
+canvas.addEventListener("click", function(event) {
+  const x = event.offsetX;
+  const y = event.offsetY;
+
+  // Get pixel data at the clicked position
+  const pixelData = ctx.getImageData(x, y, 1, 1).data;
+
+  // Extract RGB values
+  const red = pixelData[0];
+  const green = pixelData[1];
+  const blue = pixelData[2];
+
+  // Create and display the selected color
+  const selectedColor = `rgb(${red}, ${green}, ${blue})`;
+  console.log(selectedColor); // You can use this color as needed
+});
 
 
   </script>
