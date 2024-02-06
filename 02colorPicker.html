@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vertical XY CHART</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+
+<canvas id="color-picker" width="300" height="300"></canvas>
+  <h1>This is a color picker</h1>
+
+
+  <script>
+
+const canvas = document.getElementById("color-picker");
+const ctx = canvas.getContext("2d");
+// Create a gradient with more colors
+const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+gradient.addColorStop(0, "purple");
+gradient.addColorStop(0.20, "blue");
+gradient.addColorStop(0.40, "yellow");
+gradient.addColorStop(0.60, "orange");
+gradient.addColorStop(0.80, "red");
+gradient.addColorStop(1, "green");
+
+
+
+
+  </script>
+
+</body>
+</html>
