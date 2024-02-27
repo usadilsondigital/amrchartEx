@@ -56,9 +56,17 @@
         if(inside==false) rate = 5.50;
         result=  CalcValueByRate(valueAux,rate);
         ViewData(result,valueAux,rate);
+      }    
+    }
+
+
+    function ValueCharge(param,inside=true;){
+      var total = 0;
+      if(param <=3000){
+        total = ConditionalBy(1,param,inside);
       }
-      
-    
+
+
     }
 
 
