@@ -33,13 +33,11 @@
         CalcValueByRate(valueAux,rate);
       }
 
-      if(value==2){param = 3000;}
+      if(value==2){valueAux = 3000;rate = 2.5;
+        if(inside==false) rate = 2.50;
+        CalcValueByRate(valueAux,rate);}
       
-      if(value==3){param = 3000;}
       
-      if(value==4){param = 3000;}
-      
-      if(value==5){param = 3000;}
     
     }
 
