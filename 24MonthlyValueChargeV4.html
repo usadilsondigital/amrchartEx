@@ -38,7 +38,9 @@
         rate = 1.0;
         if(inside==false) rate = 1.50;
         result= CalcValueByRate(valueAux,rate);
-        ViewData(result,valueAux,rate);
+        //ViewData(result,valueAux,rate);
+        const jsonData = {result: parseInt(result),value: parseInt(valueAux),rate: parseInt(rate)};
+        console.log(jsonData); 
       }
 
       if(value==2){
