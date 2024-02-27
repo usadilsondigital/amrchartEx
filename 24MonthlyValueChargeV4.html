@@ -65,6 +65,10 @@
       if(param <=3000){
         total = ConditionalBy(1,param,inside);
       }
+      else if(3000< param && param <=6000){
+        total += ConditionalBy(1,param,inside);
+        total += ConditionalBy(2,param,inside);
+      }
 
 
     }
