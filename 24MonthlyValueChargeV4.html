@@ -12,9 +12,9 @@
 <body>
   <h1>This is a calc of the monthly Value Charge chart</h1>
   <form>
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <button id="btnSubmit">ValueCharge</button>
+    <label for="evalue">Enter Value:</label><br>
+    <input type="text" id="evalue" name="evalue"><br>
+    <button id="btnSubmit" onclick="event.preventDefault();ValueCharge(document.getElementById('evalue').value);">ValueCharge</button>
   </form>
   <div id="chartdiv" style="width: 600px; height: 600px;"></div>
 
@@ -33,31 +33,41 @@
       let rate = 0;
       let result = 0;
       let valueAux = 0;
-      if(value==1){valueAux = 3000;rate = 1.0;
+      if(value==1){        
+        if(param>3000){valueAux = 3000;}else{valueAux = param;}         
+        rate = 1.0;
         if(inside==false) rate = 1.50;
         result= CalcValueByRate(valueAux,rate);
         ViewData(result,valueAux,rate);
       }
 
-      if(value==2){valueAux = 3000;rate = 2.5;
+      if(value==2){
+        if(param>6000){valueAux = 3000;}else{valueAux = param-3000;} 
+        rate = 2.5;
         if(inside==false) rate = 2.50;
         result= CalcValueByRate(valueAux,rate);
         ViewData(result,valueAux,rate);
       }
 
-      if(value==3){valueAux = 3000;rate = 3.0;
+      if(value==3){
+        if(param>9000){valueAux = 3000;}else{valueAux = param-6000;} 
+        rate = 3.0;
         if(inside==false) rate = 3.50;
         result=  CalcValueByRate(valueAux,rate);
         ViewData(result,valueAux,rate);
       }
       
-      if(value==4){valueAux = 3000;rate = 4.0;
+      if(value==4){
+        if(param>12000){valueAux = 3000;}else{valueAux = param-9000;} 
+        rate = 4.0;
         if(inside==false) rate = 4.50;
         result= CalcValueByRate(valueAux,rate);
         ViewData(result,valueAux,rate);
       }
       
-      if(value==5){valueAux = 3000;rate = 5.0;
+      if(value==5){
+        valueAux = param-12000;
+        rate = 5.0;
         if(inside==false) rate = 5.50;
         result=  CalcValueByRate(valueAux,rate);
         ViewData(result,valueAux,rate);
