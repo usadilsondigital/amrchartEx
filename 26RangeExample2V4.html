@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vertical XY CHART</title>
+
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+
+</head>
+
+<body>
+  <h1>This Range Chart</h1>
+
+  <div id="chartdiv" style="width: 600px; height: 600px;"></div>
+
+  <script>
+
+    // Create chart instance
+    
+    var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+// Add data
+chart.data = [{
+  "category": "A",
+  "value": 500
+}, {
+  "category": "B",
+  "value": 1200
+}, {
+  "category": "C",
+  "value": 500
+}, {
+  "category": "D",
+  "value": 1500
+}, {
+  "category": "E",
+  "value": 1200
+}, {
+  "category": "F",
+  "value": 800
+}];
+
+// Create axes
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "category";
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.minGridDistance = 30;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// Create series
+var series = chart.series.push(new am4charts.ColumnSeries());
+series.dataFields.valueY = "value";
+series.dataFields.categoryX = "category";
+
+// Create value axis range
+var range = categoryAxis.axisRanges.create();
+range.category = "B";
+range.endCategory = "D";
+range.axisFill.fill = am4core.color("#396478");
+range.axisFill.fillOpacity = 0.3;
+range.label.disabled = true;
+
+  </script>
+
+</body>
+
+</html>
